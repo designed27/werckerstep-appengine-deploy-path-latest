@@ -16,12 +16,13 @@ export PATH="$PATH:$(pwd)/google_appengine"
 
 echo "$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_PASSWORD" > "$WERCKER_STEP_TEMP/password"
 
-cd $WERCKER_SOURCE_DIR
+#cd $WERCKER_SOURCE_DIR
 
 echo "Current pwd"
 pwd
+ls -l
 echo $WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SRCPATH
 debug 'Starting deployment of directory'
-appcfg.py update --email="$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_EMAIL" --passin < "$WERCKER_STEP_TEMP/password"
+appcfg.py update $WERCKER_SOURCE_DIR --email="$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_EMAIL" --passin < "$WERCKER_STEP_TEMP/password"
 
 success 'Finished'
