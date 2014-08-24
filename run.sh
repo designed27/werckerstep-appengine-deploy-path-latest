@@ -5,14 +5,21 @@ if [ ! -n "$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SDKVERSION" ] ; then
     export WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SDKVERSION="1.9.9"
 fi
 
-sudo apt-get update
-sudo apt-get install unzip
+if [ -f "$WERCKER_CACHE_DIR/google_appengine_$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SDKVERSION.zip" ];
+then
+    debug "Appengine SDK already installed."
+else
+    sudo apt-get update
+    sudo apt-get install unzip
+    
+    cd $WERCKER_CACHE_DIR
+    debug 'Downloading AppEngine SDK...'
+    
+    curl -O https://storage.googleapis.com/appengine-sdks/featured/google_appengine_$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SDKVERSION.zip ; unzip -x google_appengine_$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SDKVERSION.zip
+    export PATH="$PATH:$(pwd)/google_appengine"
+fi
 
-cd $WERCKER_CACHE_DIR
-debug 'Downloading AppEngine SDK...'
 
-curl -O https://storage.googleapis.com/appengine-sdks/featured/google_appengine_$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SDKVERSION.zip ; unzip -x google_appengine_$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SDKVERSION.zip
-export PATH="$PATH:$(pwd)/google_appengine"
 
 echo "$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_PASSWORD" > "$WERCKER_STEP_TEMP/password"
 

@@ -1,5 +1,5 @@
 name: appengine-deploy-path-latest
-version: 1.1.4
+version: 1.1.5
 description: Deploy a directory to Google's AppEngine
 keywords:
     - deploy
