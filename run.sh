@@ -22,6 +22,6 @@ echo "Current pwd"
 pwd
 echo $WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SRCPATH
 debug 'Starting deployment of directory'
-appcfg.py update $WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SRCPATH --email="$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_EMAIL" --passin < "$WERCKER_STEP_TEMP/password"
+appcfg.py update --email="$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_EMAIL" --passin < "$WERCKER_STEP_TEMP/password"
 
 success 'Finished'
