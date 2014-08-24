@@ -8,7 +8,7 @@ fi
 sudo apt-get update
 sudo apt-get install unzip
 
-cd $WERCKER_ROOT
+cd $WERCKER_CACHE_DIR
 debug 'Downloading AppEngine SDK...'
 
 curl -O https://storage.googleapis.com/appengine-sdks/featured/google_appengine_$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SDKVERSION.zip ; unzip -x google_appengine_$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SDKVERSION.zip
@@ -16,7 +16,7 @@ export PATH="$PATH:$(pwd)/google_appengine"
 
 echo "$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_PASSWORD" > "$WERCKER_STEP_TEMP/password"
 
-#cd $WERCKER_SOURCE_DIR
+cd $WERCKER_SOURCE_DIR
 
 echo "Current pwd"
 pwd
