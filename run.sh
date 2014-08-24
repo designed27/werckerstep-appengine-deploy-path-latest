@@ -8,6 +8,7 @@ fi
 if [ -f "$WERCKER_CACHE_DIR/google_appengine_$WERCKER_APPENGINE_DEPLOY_PATH_LATEST_SDKVERSION.zip" ];
 then
     debug "Appengine SDK already installed."
+    export PATH="$PATH:$WERCKER_CACHE_DIR/google_appengine"
 else
     sudo apt-get update
     sudo apt-get install unzip
